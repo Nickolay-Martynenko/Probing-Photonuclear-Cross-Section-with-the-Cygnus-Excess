@@ -46,8 +46,8 @@ with np.load("showers/cygnus_gamma/arrays.npz") as showers:
 
 In both NetCDF files, `TPR` (true positive rate) is the weighted fraction of simulated photon showers that pass the photon-median cut among those that pass the quality and reconstructed-energy cuts. The coordinate `scales` is the multiplier applied to the EGS4 photonuclear cross section on air at photon energies of 10 GeV and above in the target-nucleus rest frame. Below 10 GeV the multiplier is unity.
 
-- `cygnus_tpr_scan.nc` stores `TPR` on a grid of shape `(61, 41, 41)`. The axes are `scales` (0.1 to 100), `spectrum_negative_slope` (spectral index α in dN/dE ∝ E^−α exp(−E/E_cutoff), from −1 to 3), and `log10_energy_cutoff_eV` (base-10 logarithm of the cutoff energy E_cutoff in eV, corresponding to 0.3–30 PeV).
-- `cygnus_tpr_scan_bykov.nc` stores `TPR` at 93 cross-section scales from 0.3 to 20. The fixed spectral parameters, α = 0.13 and `log10(E_cutoff / eV) = 15.45`, are stored as global attributes. They come from a fit to the flare spectrum in [Bykov et al. (2021), Fig. 3](https://doi.org/10.3847/2041-8213/ac2f3d).
+- `cygnus_tpr_scan.nc` stores `TPR` on a grid of shape `(61, 41, 41)`. The axes are `scales` (0.1 to 100), `spectrum_negative_slope` (spectral index α in dN/dE ~ E^−α exp(−E/E_cutoff), from −1 to 3), and `log10_energy_cutoff_eV` (base-10 logarithm of the cutoff energy E_cutoff in eV, corresponding to 0.3–30 PeV).
+- `cygnus_tpr_scan_bykov.nc` stores `TPR` at 93 cross-section scales from 0.3 to 20. The fixed spectral parameters, α = 0.13 and `log10(E_cutoff / eV) = 15.45`, are stored as global attributes. They come from a fit to the flare spectrum in [Bykov _et al._ (2021), Fig. 3](https://doi.org/10.3847/2041-8213/ac2f3d).
 
 ```python
 from scipy.io import netcdf_file
