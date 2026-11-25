@@ -42,11 +42,11 @@ with np.load("showers/cygnus_gamma/arrays.npz") as showers:
     muon_profiles = showers["profiles/muon_count"]
 ```
 
-### Efficiency scans
+### True positive rate scans
 
-In both NetCDF files, `TPR` is the weighted fraction of simulated photon showers that pass the photon-median cut among those that pass the quality and reconstructed-energy cuts. The coordinate `scales` is the multiplier applied to the EGS4 photonuclear cross section on air at photon energies of 10 GeV and above in the target-nucleus rest frame. Below 10 GeV the multiplier is unity.
+In both NetCDF files, `TPR` (true positive rate) is the weighted fraction of simulated photon showers that pass the photon-median cut among those that pass the quality and reconstructed-energy cuts. The coordinate `scales` is the multiplier applied to the EGS4 photonuclear cross section on air at photon energies of 10 GeV and above in the target-nucleus rest frame. Below 10 GeV the multiplier is unity.
 
-- `cygnus_tpr_scan.nc` stores `TPR` on a grid of shape `(61, 41, 41)`. The axes are `scales` (0.1 to 100), `spectrum_negative_slope` (spectral index α in `dN/dE ∝ E^−α exp(−E/E_cutoff)`, from −1 to 3), and `log10_energy_cutoff_eV` (base-10 logarithm of the cutoff energy in eV, corresponding to 0.3–30 PeV).
+- `cygnus_tpr_scan.nc` stores `TPR` on a grid of shape `(61, 41, 41)`. The axes are `scales` (0.1 to 100), `spectrum_negative_slope` (spectral index α in dN/dE ∝ E^−α exp(−E/E_cutoff), from −1 to 3), and `log10_energy_cutoff_eV` (base-10 logarithm of the cutoff energy E_cutoff in eV, corresponding to 0.3–30 PeV).
 - `cygnus_tpr_scan_bykov.nc` stores `TPR` at 93 cross-section scales from 0.3 to 20. The fixed spectral parameters, α = 0.13 and `log10(E_cutoff / eV) = 15.45`, are stored as global attributes. They come from a fit to the flare spectrum in [Bykov et al. (2021), Fig. 3](https://doi.org/10.3847/2041-8213/ac2f3d).
 
 ```python
@@ -61,7 +61,7 @@ with netcdf_file("scans/cygnus_tpr_scan.nc", "r", mmap=False) as scan:
 
 The CORSIKA sample contains 8 192 vertical photon showers at 300 TeV. Muons with kinetic energy of at least 1 GeV were counted at an observation altitude of 1 700 m. The simulation settings are listed in `ldf/metadata.json`.
 
-- `counts` has shape `(8192, 30)`. Each row gives the muon counts in 1 m radial bins from 30 to 60 m, measured from the shower axis. The first bin is `[30, 31)` m and the last is `[59, 60)` m.
+- `counts` has shape `(8192, 30)`. Each row gives the muon counts in 1 m radial bins from 30 to 60 m, measured from the shower axis. The first bin is [30, 31) m and the last is [59, 60) m.
 - `totals` has shape `(8192,)`. Each entry is the muon count over all radii for the corresponding shower.
 
 The fit uses counts summed over showers in each radial bin and one additional count for all muons outside 30–60 m. The lateral distribution is normalized over the full plane, with the radial scale fixed at 320 m.
