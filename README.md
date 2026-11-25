@@ -6,7 +6,7 @@ Nickolay&nbsp;S.&nbsp;Martynenko<sup>1,2,*</sup>, Grigory&nbsp;I.&nbsp;Rubtsov<s
 <sup>2</sup> Institute for Nuclear Research of the Russian Academy of Sciences, 60th October Anniversary Prospect 7a, Moscow 117312, Russia<br>
 <sup>*</sup> Corresponding author: [martynenko@inr.ac.ru](mailto:martynenko@inr.ac.ru)
 
-Preprocessed CONEX shower samples and photon-selection efficiency scans accompanying *Probing the photonuclear cross section with the Carpet-2 air-shower excess from the Cygnus region*.
+Preprocessed CONEX shower samples, photon-selection efficiency scans, and CORSIKA muon counts used to fit the lateral distribution in *Probing the photonuclear cross section with the Carpet-2 air-shower excess from the Cygnus region*.
 
 ## Download and read the data
 
@@ -21,6 +21,8 @@ Install [Git LFS](https://git-lfs.com), run `git lfs install`, and clone this re
 | `showers/diffuse_proton/` | Isotropic proton showers used for comparison in the muon-to-electron ratio distribution |
 | `scans/cygnus_tpr_scan.nc` | Efficiency scan over the cross-section scale, spectral index, and cutoff energy |
 | `scans/cygnus_tpr_scan_bykov.nc` | Efficiency scan over the cross-section scale at a fixed flare spectrum |
+| `ldf/corsika-300tev-photon-shower-muon-radial-counts.npz` | Per-shower radial and total muon counts used to fit the photon-shower muon lateral distribution |
+| `ldf/metadata.json` | CORSIKA settings, array descriptions, and fit conventions |
 
 ### Shower samples
 
@@ -54,6 +56,15 @@ with netcdf_file("scans/cygnus_tpr_scan.nc", "r", mmap=False) as scan:
     scales = scan.variables["scales"][:]
     tpr = scan.variables["TPR"][:]
 ```
+
+### CORSIKA muon lateral distribution
+
+The CORSIKA sample contains 8,192 vertical photon showers at 300 TeV. Muons with kinetic energy of at least 1 GeV were counted at an observation altitude of 1,700 m. The simulation settings are listed in `ldf/metadata.json`.
+
+- `counts` has shape `(8192, 30)). Each row gives the muon counts in 1 m radial bins from 30 to 60 m, measured from the shower axis. The first bin is `[30, 31)` m and the last is `[59, 60)` m.
+- `totals` has shape `(8192,)`. Each entry is the muon count over all radii for the corresponding shower.
+
+The fit uses counts summed over showers in each radial bin and one additional count for all muons outside 30–60 m. That count is `totals.sum() - counts.sum()`. The lateral distribution is normalized over the full plane, with the radial scale fixed at 320 m.
 
 ## Citation
 
