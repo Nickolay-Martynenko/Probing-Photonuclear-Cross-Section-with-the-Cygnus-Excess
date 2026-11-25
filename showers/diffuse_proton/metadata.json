@@ -1,6 +1,6 @@
 {
   "cuts": {
-    "electron_kinetic_energy_min_GeV": 0.0010000000474974513,
+    "electron_kinetic_energy_min_GeV": 0.001,
     "muon_kinetic_energy_min_GeV": 1.0
   },
   "dataset": {
@@ -54,14 +54,16 @@
   "simulation": {
     "generator": {
       "name": "CONEX",
-      "version": 78.01000213623047
+      "version": "7.80"
     },
     "models": {
       "high_energy": {
-        "id": 4
+        "id": 4,
+        "name": "EPOS LHC-R"
       },
       "low_energy": {
-        "id": 8
+        "id": 8,
+        "name": "UrQMD"
       }
     },
     "number_of_showers": 65536,
