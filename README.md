@@ -61,7 +61,7 @@ with netcdf_file("scans/cygnus_tpr_scan.nc", "r", mmap=False) as scan:
 
 The CORSIKA sample contains 8,192 vertical photon showers at 300 TeV. Muons with kinetic energy of at least 1 GeV were counted at an observation altitude of 1,700 m. The simulation settings are listed in `ldf/metadata.json`.
 
-- `counts` has shape `(8192, 30)). Each row gives the muon counts in 1 m radial bins from 30 to 60 m, measured from the shower axis. The first bin is `[30, 31)` m and the last is `[59, 60)` m.
+- `counts` has shape `(8192, 30)`. Each row gives the muon counts in 1 m radial bins from 30 to 60 m, measured from the shower axis. The first bin is `[30, 31)` m and the last is `[59, 60)` m.
 - `totals` has shape `(8192,)`. Each entry is the muon count over all radii for the corresponding shower.
 
 The fit uses counts summed over showers in each radial bin and one additional count for all muons outside 30–60 m. That count is `totals.sum() - counts.sum()`. The lateral distribution is normalized over the full plane, with the radial scale fixed at 320 m.
