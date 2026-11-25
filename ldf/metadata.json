@@ -1,0 +1,21 @@
+{
+  "simulation": {
+    "generator": "CORSIKA 7.8010",
+    "high_energy_hadronic_model": "EPOS LHC-R",
+    "low_energy_hadronic_model": "UrQMD",
+    "hadronic_transition_energy_GeV": 80,
+    "electromagnetic_model": "EGS4",
+    "primary": "photon",
+    "primary_energy_TeV": 300,
+    "zenith_angle_deg": 0,
+    "observation_altitude_m": 1700,
+    "minimum_muon_kinetic_energy_GeV": 1,
+    "number_of_showers": 8192
+  },
+  "arrays": {
+    "counts": "Muon counts per shower in 30 one-meter radial bins. Bin j, starting at zero, spans [30+j, 31+j) m.",
+    "totals": "Total muon count per shower over all radii, with the same energy cut."
+  },
+  "row_order": "Ascending CORSIKA run number, from 300001 to 308192.",
+  "fit": "The fit uses the summed counts in the 30–60 m bins and the count outside that interval as one additional bin. The radial scale is fixed at 320 m."
+}
