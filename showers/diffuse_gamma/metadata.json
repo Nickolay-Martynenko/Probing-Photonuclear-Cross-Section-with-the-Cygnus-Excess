@@ -1,0 +1,86 @@
+{
+  "cuts": {
+    "electron_kinetic_energy_min_GeV": 0.0010000000474974513,
+    "muon_kinetic_energy_min_GeV": 1.0
+  },
+  "dataset": {
+    "created_utc": "2026-10-27T14:04:12.998532+00:00",
+    "id": "diffuse_gamma_uniform_log10"
+  },
+  "ground": {
+    "method": "nearest_height_sample"
+  },
+  "observation": {
+    "observatory": {
+      "altitude_m": 1700.0,
+      "latitude_deg": 43.273,
+      "longitude_deg": 42.685,
+      "name": "Carpet-2"
+    },
+    "source": {
+      "kind": "diffuse",
+      "name": "Isotropic"
+    }
+  },
+  "photonuclear": {
+    "cross_section_scale": 1.0
+  },
+  "profile_diagnostics": {
+    "negative_electron_bins": 107,
+    "negative_muon_bins": 0,
+    "values": "preserved from CONEX without modification"
+  },
+  "sampling": {
+    "conex_seed_offset": 0,
+    "energy": {
+      "kind": "uniform_log10",
+      "max_log10_energy_eV": 19.0,
+      "min_log10_energy_eV": 13.0
+    },
+    "independent_energy_sky_streams": true,
+    "random_state": 42,
+    "sky": {
+      "kind": "isotropic_solid_angle"
+    },
+    "zenith_range_deg": [
+      0.0,
+      40.0
+    ]
+  },
+  "schema": {
+    "name": "carpet.electron_muon_profiles",
+    "version": 1
+  },
+  "simulation": {
+    "generator": {
+      "name": "CONEX",
+      "version": 78.01000213623047
+    },
+    "models": {
+      "high_energy": {
+        "id": 4
+      },
+      "low_energy": {
+        "id": 8
+      }
+    },
+    "number_of_showers": 65536,
+    "primary": {
+      "kind": "photon",
+      "particle_id": 0
+    }
+  },
+  "units": {
+    "events/azimuth_deg": "deg",
+    "events/exposure_weight": "dimensionless",
+    "events/log10_primary_energy_eV": "log10(eV)",
+    "events/zenith_deg": "deg",
+    "ground/electron_count": "count above cut",
+    "ground/muon_count": "count above cut",
+    "ground/slant_depth_g_cm2": "g cm^-2",
+    "profiles/electron_count": "count above cut",
+    "profiles/height_m": "m above sea level",
+    "profiles/muon_count": "count above cut",
+    "profiles/slant_depth_g_cm2": "g cm^-2"
+  }
+}
